@@ -22,6 +22,8 @@ export default {
     // login 
 
     async login(req, res) {
+
+
         try {
             const { value, error } = userService.validationLogin(req.body);
             if (error) {
@@ -44,4 +46,24 @@ export default {
             return res.status(500).send(error)
         }
     },
+
+    // get all users 
+    async getAllUser(req, res) {
+        let userObj;
+        try {
+            const users = await User.find();
+            if (!users) {
+                return res.status(200).json({});
+            }
+            const count = await User.count({});
+            userObj = {
+                user: users,
+                count: count
+            }
+            return res.json(userObj)
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error)
+        }
+    }
 }

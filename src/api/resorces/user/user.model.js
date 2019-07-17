@@ -6,6 +6,7 @@ export const ADMIN_USER = 1;
 const userSchema = new Schema({
     username: {
         type: String,
+        unique: true
     },
     firstName: {
         type: String,

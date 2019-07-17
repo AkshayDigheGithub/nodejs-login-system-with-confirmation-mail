@@ -30,8 +30,9 @@ export default {
     },
 
     validationLogin(body) {
+        console.log("body", body)
         const schema = Joi.object().keys({
-            email: Joi.string().required().email(),
+            email: Joi.string().email(),
             password: Joi.string().required()
         });
         const { value, error } = Joi.validate(body, schema);
