@@ -2,6 +2,8 @@ import express from 'express';
 import logger from 'morgan';
 import { connect } from './src/config/db';
 import { restRouter } from './src/api';
+import passport from 'passport';
+import { configJWTStrategy } from './src/api/middleware/passport-jwt';
 
 const app = express();
 app.use(logger('combined'));
@@ -11,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', restRouter);
 connect();
+// passport , passport-jwt
+app.use(passport.initialize());  //req.user
+configJWTStrategy()
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

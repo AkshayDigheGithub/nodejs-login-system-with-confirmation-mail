@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
+import { devConfig } from "../../../config/env/development"
 
 export const SIMPLE_USER = 2;
 export const ADMIN_USER = 1;
@@ -24,6 +25,15 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    profile_pic: {
+        type: String,
+        default: devConfig.profile_pic
+    },
+    mobileNo: {
+        type: String,
+        min: 10,
+        max: 10
     },
     isVerified: {
         type: Boolean,

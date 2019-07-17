@@ -47,6 +47,30 @@ export default {
         }
     },
 
+    // get user by token 
+    async authenticate(req, res) {
+        res.json(req.user);
+    },
+
+    updateMe(req, res) {
+        const query = { _id: req.user._id };
+        try {
+            const { value, error } = userService.validationUpdateMe(req.body);
+            if (error) {
+                return res.status(400).json(error);
+            }
+            User.findOneAndUpdate(query, value, (error, response) => {
+                if (error) {
+                    return res.status(500).send(error)
+                }
+                return res.json(response);
+            })
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error)
+        }
+    },
+
     // get all users 
     async getAllUser(req, res) {
         let userObj;

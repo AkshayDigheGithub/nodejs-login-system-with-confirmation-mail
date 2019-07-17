@@ -15,7 +15,26 @@ export default {
             email: Joi.string().required().email(),
             password: Joi.string().required(),
             role: Joi.number().integer(),
-            isVerified: Joi.boolean()
+            isVerified: Joi.boolean(),
+            profile_pic: Joi.string()
+        });
+
+        const { value, error } = Joi.validate(body, schema);
+        if (error && error.details) {
+            return { error }
+        }
+        return { value }
+    },
+
+    validationUpdateMe(body) {
+        const schema = Joi.object().keys({
+            username: Joi.string().alphanum().min(3).max(30),
+            firstName: Joi.string(),
+            lastName: Joi.string(),
+            role: Joi.number().integer(),
+            isVerified: Joi.boolean(),
+            profile_pic: Joi.string(),
+            mobileNo: Joi.string().min(10).max(10)
         });
 
         const { value, error } = Joi.validate(body, schema);
