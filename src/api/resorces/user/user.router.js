@@ -6,6 +6,7 @@ export const userRouter = express.Router();
 const authenticateMiddleware = passport.authenticate('jwt', { session: false });
 userRouter.post('/user-sign-up', userController.signup);
 userRouter.post('/user-login', userController.login);
+userRouter.put('/verify', userController.verifyUserEmail)
 // 
 userRouter.route('/me')
     .get(authenticateMiddleware, userController.authenticate)

@@ -1,5 +1,7 @@
 import Joi from 'joi';
 import bcrypt from 'bcryptjs';
+// import jwt from 'jsonwebtoken';
+// import { devConfig } from '../../../config/env/development';
 
 export default {
     encryptPassword(plainText) {

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
-import { devConfig } from "../../../config/env/development"
+import { devConfig } from "../../../config/env/development.config"
 
 export const SIMPLE_USER = 2;
 export const ADMIN_USER = 1;
@@ -34,6 +34,11 @@ const userSchema = new Schema({
         type: String,
         min: 10,
         max: 10
+    },
+    active: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     isVerified: {
         type: Boolean,
