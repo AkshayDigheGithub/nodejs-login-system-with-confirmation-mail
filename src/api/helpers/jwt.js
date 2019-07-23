@@ -6,5 +6,7 @@ export default {
         return jwt.sign(payload, devConfig.secret, {
             expiresIn
         })
-    }
+    },
+
+
 }
