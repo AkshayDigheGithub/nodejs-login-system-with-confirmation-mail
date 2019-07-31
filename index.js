@@ -4,11 +4,13 @@ import { connect } from './src/config/db';
 import { restRouter } from './src/api';
 import passport from 'passport';
 import { configJWTStrategy } from './src/api/middleware/passport-jwt';
+import cors from 'cors';
 
 const app = express();
 app.use(logger('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 
 app.use('/api', restRouter);
@@ -33,6 +35,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-const port = 3000;
+const port = 3030;
 app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(port, () => console.log(` app listening on port ${port}!`))
